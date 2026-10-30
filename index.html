@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="PrintWise - A campus printing and document processing cost estimator.">
+
+    <title>PrintWise | Campus Printing Cost Estimator</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- =====================================
+         SIDEBAR
+    ====================================== -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">🖨️</div>
+
+            <div>
+                <h2>PrintWise</h2>
+                <p>Print Smarter. Spend Better.</p>
+            </div>
+
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <button
+                class="menu-item active"
+                data-view="dashboard"
+                type="button">
+                🏠 Dashboard
+            </button>
+
+            <button
+                class="menu-item"
+                data-view="calculator"
+                type="button">
+                🧮 Cost Calculator
+            </button>
+
+            <button
+                class="menu-item"
+                data-view="history"
+                type="button">
+                📋 Estimate History
+            </button>
+
+            <button
+                class="menu-item"
+                data-view="pricing"
+                type="button">
+                💰 Service Pricing
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <button id="themeToggle" type="button">
+                🌙 Dark Mode
+            </button>
+
+            <div class="student-info">
+                <p>Developed By</p>
+                <strong>David Ojogbane</strong>
+                <small>2025/HND/SWD/009</small>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================
+         MAIN CONTENT
+    ====================================== -->
+
+    <main class="main-content">
+
+        <!-- HEADER -->
+
+        <header class="header">
+
+            <div class="header-left">
+
+                <button
+                    class="mobile-menu-btn"
+                    id="menuToggle"
+                    type="button"
+                    aria-label="Toggle navigation"
+                    aria-expanded="false"
+                    aria-controls="sidebar">
+                    ☰
+                </button>
+
+                <div>
+                    <h1 id="pageTitle">Dashboard</h1>
+
+                    <p>
+                        Estimate your campus printing
+                        and document processing costs.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="header-actions">
+
+                <button
+                    class="btn btn-outline"
+                    id="resetCalculatorBtn"
+                    type="button">
+                    ↺ Reset
+                </button>
+
+                <button
+                    class="btn btn-primary"
+                    id="saveEstimateBtn"
+                    type="button">
+                    💾 Save Estimate
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================
+             DASHBOARD STATISTICS
+        ====================================== -->
+
+        <section class="stats-container" id="statsSection">
+
+            <div class="stat-card">
+
+                <div class="stat-icon blue">📋</div>
+
+                <div class="stat-details">
+                    <p>Saved Estimates</p>
+                    <h2 id="totalEstimates">0</h2>
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="stat-icon green">💰</div>
+
+                <div class="stat-details">
+                    <p>Current Estimate</p>
+                    <h2 id="currentEstimate">₦0.00</h2>
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="stat-icon orange">🖨️</div>
+
+                <div class="stat-details">
+                    <p>Printing Cost</p>
+                    <h2 id="printingCostStat">₦0.00</h2>
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="stat-icon purple">📄</div>
+
+                <div class="stat-details">
+                    <p>Processing Cost</p>
+                    <h2 id="processingCostStat">₦0.00</h2>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             WELCOME BANNER
+        ====================================== -->
+
+        <section class="welcome-banner" id="welcomeBanner">
+
+            <div>
+
+                <span class="welcome-label">
+                    SMART CAMPUS PRINTING
+                </span>
+
+                <h2>
+                    Know Your Cost<br>
+                    Before You Print.
+                </h2>
+
+                <p>
+                    Estimate printing, photocopying,
+                    binding, lamination, scanning,
+                    and typing expenses in seconds.
+                </p>
+
+                <button
+                    class="btn btn-light"
+                    id="startCalculatingBtn"
+                    type="button">
+                    Start Calculating →
+                </button>
+
+            </div>
+
+            <div class="welcome-illustration"
+                 aria-hidden="true">
+                🖨️
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             COST CALCULATOR
+        ====================================== -->
+
+        <section class="content-section" id="calculatorSection">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Printing Cost Calculator</h2>
+
+                    <p>
+                        Enter your document details
+                        to calculate an estimated cost.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="calculator-layout">
+
+                <!-- CALCULATOR FORM -->
+
+                <div class="calculator-card">
+
+                    <form id="calculatorForm">
+
+                        <!-- DOCUMENT INFORMATION -->
+
+                        <h3 class="form-section-title">
+                            📄 Document Information
+                        </h3>
+
+                        <div class="form-group">
+
+                            <label for="documentName">
+                                Document Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="documentName"
+                                placeholder="e.g. SWD 417 Assignment"
+                                maxlength="100"
+                            >
+
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="pageCount">
+                                    Number of Pages
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="pageCount"
+                                    min="0"
+                                    max="10000"
+                                    value="0"
+                                    required
+                                >
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label for="copyCount">
+                                    Number of Copies
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="copyCount"
+                                    min="1"
+                                    max="1000"
+                                    value="1"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- PRINTING OPTIONS -->
+
+                        <h3 class="form-section-title">
+                            🖨️ Printing Options
+                        </h3>
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="printType">
+                                    Print Type
+                                </label>
+
+                                <select id="printType">
+
+                                    <option value="bw">
+                                        Black & White
+                                    </option>
+
+                                    <option value="color">
+                                        Coloured Printing
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label for="paperSize">
+                                    Paper Size
+                                </label>
+
+                                <select id="paperSize">
+
+                                    <option value="a4">
+                                        A4
+                                    </option>
+
+                                    <option value="a3">
+                                        A3
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="printMode">
+                                Printing Mode
+                            </label>
+
+                            <select id="printMode">
+
+                                <option value="single">
+                                    Single-Sided
+                                </option>
+
+                                <option value="double">
+                                    Double-Sided
+                                </option>
+
+                            </select>
+
+                            <small>
+                                Double-sided printing uses fewer
+                                sheets but may have a different rate.
+                            </small>
+
+                        </div>
+
+
+                        <!-- PHOTOCOPYING -->
+
+                        <h3 class="form-section-title">
+                            📑 Photocopying
+                        </h3>
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="photocopyPages">
+                                    Pages to Photocopy
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="photocopyPages"
+                                    min="0"
+                                    max="10000"
+                                    value="0"
+                                >
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label for="photocopyCopies">
+                                    Photocopy Copies
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="photocopyCopies"
+                                    min="1"
+                                    max="1000"
+                                    value="1"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- DOCUMENT PROCESSING -->
+
+                        <h3 class="form-section-title">
+                            📚 Document Processing
+                        </h3>
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="bindingType">
+                                    Binding Type
+                                </label>
+
+                                <select id="bindingType">
+
+                                    <option value="none">
+                                        No Binding
+                                    </option>
+
+                                    <option value="spiral">
+                                        Spiral Binding
+                                    </option>
+
+                                    <option value="thermal">
+                                        Thermal Binding
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label for="bindingQuantity">
+                                    Number of Bindings
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="bindingQuantity"
+                                    min="0"
+                                    max="1000"
+                                    value="0"
+                                >
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="laminationQuantity">
+                                    Pages to Laminate
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="laminationQuantity"
+                                    min="0"
+                                    max="1000"
+                                    value="0"
+                                >
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label for="scanningPages">
+                                    Pages to Scan
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="scanningPages"
+                                    min="0"
+                                    max="10000"
+                                    value="0"
+                                >
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="typingPages">
+                                Pages for Typing
+                            </label>
+
+                            <input
+                                type="number"
+                                id="typingPages"
+                                min="0"
+                                max="10000"
+                                value="0"
+                            >
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+                <!-- COST SUMMARY -->
+
+                <div class="summary-card">
+
+                    <div class="summary-header">
+
+                        <h3>🧾 Cost Breakdown</h3>
+
+                        <p>
+                            Your estimated service charges
+                        </p>
+
+                    </div>
+
+                    <div class="summary-list">
+
+                        <div class="summary-item">
+                            <span>Printing</span>
+                            <strong id="printingCost">₦0.00</strong>
+                        </div>
+
+                        <div class="summary-item">
+                            <span>Photocopying</span>
+                            <strong id="photocopyCost">₦0.00</strong>
+                        </div>
+
+                        <div class="summary-item">
+                            <span>Binding</span>
+                            <strong id="bindingCost">₦0.00</strong>
+                        </div>
+
+                        <div class="summary-item">
+                            <span>Lamination</span>
+                            <strong id="laminationCost">₦0.00</strong>
+                        </div>
+
+                        <div class="summary-item">
+                            <span>Scanning</span>
+                            <strong id="scanningCost">₦0.00</strong>
+                        </div>
+
+                        <div class="summary-item">
+                            <span>Typing</span>
+                            <strong id="typingCost">₦0.00</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="summary-total">
+
+                        <span>Estimated Total</span>
+
+                        <h2 id="grandTotal">₦0.00</h2>
+
+                    </div>
+
+                    <p class="estimate-notice">
+                        This is an estimated amount.
+                        Actual campus printing prices
+                        may vary.
+                    </p>
+
+                    <div class="summary-actions">
+
+                        <button
+                            class="btn btn-primary"
+                            id="summarySaveBtn"
+                            type="button">
+                            💾 Save Estimate
+                        </button>
+
+                        <button
+                            class="btn btn-outline"
+                            id="printEstimateBtn"
+                            type="button">
+                            🖨️ Print Estimate
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             ESTIMATE HISTORY
+        ====================================== -->
+
+        <section
+            class="content-section"
+            id="historySection"
+            hidden>
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Estimate History</h2>
+
+                    <p>
+                        View and manage your
+                        previously saved estimates.
+                    </p>
+                </div>
+
+                <button
+                    class="btn btn-outline"
+                    id="clearHistoryBtn"
+                    type="button">
+                    🗑️ Clear History
+                </button>
+
+            </div>
+
+            <div class="history-grid" id="historyContainer">
+
+                <!-- Generated by JavaScript -->
+
+            </div>
+
+            <div class="empty-state" id="historyEmpty">
+
+                <div class="empty-icon">📋</div>
+
+                <h3>No Saved Estimates</h3>
+
+                <p>
+                    Your saved printing estimates
+                    will appear here.
+                </p>
+
+                <button
+                    class="btn btn-primary"
+                    id="emptyCalculateBtn"
+                    type="button">
+                    Create an Estimate
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             SERVICE PRICING
+        ====================================== -->
+
+        <section
+            class="content-section"
+            id="pricingSection"
+            hidden>
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Service Pricing</h2>
+
+                    <p>
+                        Review and adjust the rates
+                        used for cost estimation.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="pricing-card">
+
+                <div class="pricing-notice">
+
+                    <strong>ℹ️ Editable Price Rates</strong>
+
+                    <p>
+                        The rates below are examples
+                        for demonstration purposes.
+                        Update them to match your
+                        campus printing shop.
+                    </p>
+
+                </div>
+
+                <form id="pricingForm">
+
+                    <h3 class="form-section-title">
+                        Printing Rates (₦ per page)
+                    </h3>
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="rateBwA4">
+                                Black & White A4
+                            </label>
+
+                            <input
+                                type="number"
+                                id="rateBwA4"
+                                min="0"
+                                step="0.01"
+                                required
+                            >
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="rateColorA4">
+                                Coloured A4
+                            </label>
+
+                            <input
+                                type="number"
+                                id="rateColorA4"
+                                min="0"
+                                step="0.01"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="rateBwA3">
+                                Black & White A3
+                            </label>
+
+                            <input
+                                type="number"
+                                id="rateBwA3"
+                                min="0"
+                                step="0.01"
+                                required
+                            >
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="rateColorA3">
+                                Coloured A3
+                            </label>
+
+                            <input
+                                type="number"
+                                id="rateColorA3"
+                                min="0"
+                                step="0.01"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="doubleSidedMultiplier">
+                            Double-Sided Rate Multiplier
+                        </label>
+
+                        <input
+                            type="number"
+                            id="doubleSidedMultiplier"
+                            min="0"
+                            step="0.01"
+                            required
+                        >
+
+                        <small>
+                            Example: 0.90 applies a 10%
+                            discount to the printing cost.
+                        </small>
+
+                    </div>
+
+                    <h3 class="form-section-title">
+                        Other Service Rates
+                    </h3>
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="ratePhotocopy">
+                                Photocopying (₦ per page)
+                            </label>
+
+                            <input
+                                type="number"
+                                id="ratePhotocopy"
+                                min="0"
+                                step="0.01"
+                                required
+                            >
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="rateSpiral">
+                                Spiral Binding (₦ each)
+                            </label>
+
+                            <input
+                                type="number"
+                                id="rateSpiral"
+                                min="0"
+                                step="0.01"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="rateThermal">
+                                Thermal Binding (₦ each)
+                            </label>
+
+                            <input
+                                type="number"
+                                id="rateThermal"
+                                min="0"
+                                step="0.01"
+                                required
+                            >
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="rateLamination">
+                                Lamination (₦ per page)
+                            </label>
+
+                            <input
+                                type="number"
+                                id="rateLamination"
+                                min="0"
+                                step="0.01"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="rateScanning">
+                                Scanning (₦ per page)
+                            </label>
+
+                            <input
+                                type="number"
+                                id="rateScanning"
+                                min="0"
+                                step="0.01"
+                                required
+                            >
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="rateTyping">
+                                Typing (₦ per page)
+                            </label>
+
+                            <input
+                                type="number"
+                                id="rateTyping"
+                                min="0"
+                                step="0.01"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <div class="pricing-actions">
+
+                        <button
+                            class="btn btn-outline"
+                            id="resetPricingBtn"
+                            type="button">
+                            ↺ Restore Default Rates
+                        </button>
+
+                        <button
+                            class="btn btn-primary"
+                            type="submit">
+                            💾 Save Pricing
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             FOOTER
+        ====================================== -->
+
+        <footer class="footer">
+
+            <p>
+                Developed by
+                <strong>David Ojogbane</strong>
+            </p>
+
+            <p>
+                Matric Number: 2025/HND/SWD/009
+            </p>
+
+            <p>
+                SWD 417 Assignment |
+                Campus Printing and Document
+                Processing Cost Estimator
+            </p>
+
+            <p>
+                &copy; 2026 PrintWise.
+                All Rights Reserved.
+            </p>
+
+        </footer>
+
+    </main>
+
+
+    <!-- =====================================
+         JAVASCRIPT
+    ====================================== -->
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>
